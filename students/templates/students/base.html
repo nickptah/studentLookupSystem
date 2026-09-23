@@ -1,0 +1,5 @@
+{% load static %}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}Student Portal{% endblock %}</title><link rel="stylesheet" href="{% static 'students/style.css' %}"></head><body>
+<header class="topbar"><div class="nav"><a class="logo" href="{% url 'home' %}">STUDENT PORTAL</a>{% if user.is_authenticated %}<nav><a href="{% url 'dashboard' %}">Dashboard</a><a href="{% url 'import_excel' %}">Import Excel</a><a href="/admin/">Django Admin</a><form method="post" action="{% url 'logout' %}" class="inline">{% csrf_token %}<button class="linkbtn">Logout</button></form></nav>{% else %}<a href="{% url 'login' %}">Staff Login</a>{% endif %}</div></header>
+{% if messages %}<div class="messages">{% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}</div>{% endif %}
+<main>{% block content %}{% endblock %}</main><footer>Student Information Lookup System</footer></body></html>

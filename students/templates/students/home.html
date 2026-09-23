@@ -1,0 +1,4 @@
+{% extends 'students/base.html' %}{% block title %}Student Details Lookup{% endblock %}{% block content %}
+<section class="hero"><div class="card lookup"><p class="eyebrow">STUDENT INFORMATION</p><h1>Find your details</h1><p class="muted">Enter your admission number to view the record assigned to you.</p><form method="post">{% csrf_token %}<label>{{ form.admission_no.label }}</label>{{ form.admission_no }}{% if form.admission_no.errors %}<div class="error">{{ form.admission_no.errors }}</div>{% endif %}<button class="primary">View Details</button></form>
+{% if searched and student %}<div class="result"><div class="found">✓ Record found</div>{% for label,value in student_fields %}<div class="row"><span>{{ label }}</span><strong>{{ value }}</strong></div>{% endfor %}</div>{% elif searched %}<div class="notfound"><strong>Student not found</strong><p>Check the admission number and try again.</p></div>{% endif %}</div></section>
+{% endblock %}
